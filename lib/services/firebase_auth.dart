@@ -2,8 +2,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sellers/screens/home_screen.dart';
 import 'package:sellers/screens/login_screen.dart';
+import 'package:sellers/widgets/bottom_navbar.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class AuthenticationWrapper extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator(); // Placeholder for loading state
         } else if (snapshot.hasData) {
-          return HomeScreen();
+          return BottomNavBar();
         } else {
           //8
           return LoginScreen();
