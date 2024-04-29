@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new, sort_child_properties_last, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:sellers/screens/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -115,12 +116,12 @@ class LoginScreen extends StatelessWidget {
               Text("Don't have an account?"),
               TextButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     // builder: (context) => SignupScreen(),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignupScreen(),
+                    ),
+                  );
                 },
                 child: Text('Sign up', style: TextStyle(color: Colors.blue)),
               ),
