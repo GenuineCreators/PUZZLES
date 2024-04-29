@@ -128,6 +128,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: ElevatedButton(
                     onPressed: () async {
                       await signUp();
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
                     },
                     child: Text(
                       'Sign Up',
@@ -225,7 +229,10 @@ class _SignupScreenState extends State<SignupScreen> {
       );
 
       // Upload profile picture to Firebase Storage
-      String? imageUrl = await uploadProfilePicture(userCredential.user!.uid);
+      String? imageUrl;
+      if (selectedImage != null) {
+        imageUrl = await uploadProfilePicture(userCredential.user!.uid);
+      }
 
       // Store user data in Cloud Firestore
       await _firestore.collection('users').doc(userCredential.user!.uid).set({
@@ -236,38 +243,32 @@ class _SignupScreenState extends State<SignupScreen> {
       });
 
       // Show success message
-      displayToastMessage('Account created successfully', context);
+      // displayToastMessage('Account created successfully', context);
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-
-      // Navigate to the next screen
-      // For example, navigate to the home screen
+      // Redirect to HomeScreen
     } catch (e) {
       // Show error message
-      displayToastMessage('Error: $e', context);
+      // displayToastMessage('Error: $e', context);
     }
   }
 
   Future<String?> uploadProfilePicture(String userId) async {
     try {
-      if (selectedImage != null) {
-        final Reference ref =
-            _storage.ref().child('profile_pictures').child('$userId.jpg');
-        await ref.putFile(selectedImage!);
-        return await ref.getDownloadURL();
-      }
+      final Reference ref =
+          _storage.ref().child('profile_pictures').child('$userId.jpg');
+      await ref.putFile(selectedImage!);
+      return await ref.getDownloadURL();
     } catch (e) {
       // Handle upload error
-      displayToastMessage('Error uploading profile picture: $e', context);
+      // displayToastMessage('Error uploading profile picture: $e', context);
+      return null;
     }
-    return null;
   }
 
   displayToastMessage(String message, BuildContext context) {
-    Fluttertoast.showToast(msg: message);
+    Fluttertoast.showToast(
+      msg: message,
+    );
   }
 
   void showImagePickerOption(BuildContext context) {
