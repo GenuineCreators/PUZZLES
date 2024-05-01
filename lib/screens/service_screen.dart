@@ -290,17 +290,16 @@ class _ServiceScreenState extends State<ServiceScreen> {
                     return;
                   }
                   try {
-
-                     // Show circular progress indicator
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (BuildContext context) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        },
-                      );
+                    // Show circular progress indicator
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    );
                     String imageUrl = await _uploadImage(selectedImage!);
                     await _addToDatabase(imageUrl);
                     Fluttertoast.showToast(

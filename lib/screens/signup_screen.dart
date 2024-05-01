@@ -8,7 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sellers/screens/home_screen.dart';
+import 'package:sellers/screens/details_screen.dart';
 import 'package:sellers/screens/login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -130,7 +130,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       await signUp();
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => DetailsScreen()),
                       );
                     },
                     child: Text(
@@ -337,152 +338,3 @@ class _SignupScreenState extends State<SignupScreen> {
     });
   }
 }
-
-
-// final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
-  // registerNewUser(BuildContext context) async {
-  //   try {
-  //     UserCredential userCredential =
-  //         await _firebaseAuth.createUserWithEmailAndPassword(
-  //       email: _emailController.text,
-  //       password: _passwordController.text,
-  //     );
-  //     User? firebaseUser = userCredential.user;
-
-  //     if (firebaseUser != null) {
-  //       Map<String, dynamic> userDataMap = {
-  //         "name": _fullNameController.text.trim(),
-  //         "email": _emailController.text.trim(),
-  //         "phone": _phoneController.text.trim(),
-  //       };
-
-  //       // Set user data in the Firebase Realtime Database
-  //       await _database.child('users').child(firebaseUser.uid).set(userDataMap);
-
-  //       displayToastMessage("USER CREATED SUCCESSFULLY", context);
-
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => HomeScreen(),
-  //         ),
-  //       );
-  //     } else {
-  //       displayToastMessage("USER NOT CREATED", context);
-  //     }
-  //   } catch (error) {
-  //     displayToastMessage("Error: $error", context);
-  //   }
-  // }
-
-
-
-
-
-//  final DatabaseReference _database = FirebaseDatabase.instance.reference();
-//   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-//   final FirebaseStorage _storage =
-//       FirebaseStorage.instance; // Instance for Storage
-
-
-
-
-
-
-                      // if (_fullNameController.text.length < 3) {
-                      //   displayToastMessage(
-                      //       "Username must be atleast 3 Characters", context);
-                      // } else if (!_emailController.text.contains("@")) {
-                      //   displayToastMessage("Invalid Email Address", context);
-                      // } else if (_phoneController.text.isEmpty) {
-                      //   displayToastMessage(
-                      //       "Please enter a valid Phone Number", context);
-                      // } else if (_passwordController.text.length < 6) {
-                      //   displayToastMessage(
-                      //       "Password must be atleast 6 Characters", context);
-                      // } else {
-                      //   try {
-                      //     // Create user with Firebase Authentication
-                      //     UserCredential userCredential = await _firebaseAuth
-                      //         .createUserWithEmailAndPassword(
-                      //       email: _emailController.text,
-                      //       password: _passwordController.text,
-                      //     );
-                      //     User? firebaseUser = userCredential.user;
-
-                      //     if (firebaseUser != null) {
-                      //       // Upload profile image (if selected)
-                      //       if (selectedImage != null) {
-                      //         String profileImagePath =
-                      //             'profile_images/${firebaseUser.uid}.jpg'; // Unique path
-                      //         final Reference ref =
-                      //             _storage.ref().child(profileImagePath);
-                      //         await ref.putFile(selectedImage!); // Upload image
-
-                      //         // Get download URL after upload
-                      //         final url = await ref.getDownloadURL();
-
-                      //         // Create user data map (including profile image URL)
-                      //         Map<String, dynamic> userDataMap = {
-                      //           "name": _fullNameController.text.trim(),
-                      //           "email": _emailController.text.trim(),
-                      //           "phone": _phoneController.text.trim(),
-                      //           "profile_image": url,
-                      //         };
-
-                      //         // Set user data in Firebase Realtime Database
-                      //         await _database
-                      //             .child('users')
-                      //             .child(firebaseUser.uid)
-                      //             .set(userDataMap);
-
-                      //         displayToastMessage(
-                      //             "USER CREATED SUCCESSFULLY", context);
-
-                      //         Navigator.pushReplacement(
-                      //           context,
-                      //           MaterialPageRoute(
-                      //             builder: (context) => HomeScreen(),
-                      //           ),
-                      //         );
-                      //       } else {
-                      //         // If no image selected, create user data without image
-                      //         Map<String, dynamic> userDataMap = {
-                      //           "name": _fullNameController.text.trim(),
-                      //           "email": _emailController.text.trim(),
-                      //           "phone": _phoneController.text.trim(),
-                      //           "profile_image":
-                      //               "", // Or a default image URL if desired
-                      //         };
-
-                      //         // Set user data in Firebase Realtime Database
-                      //         await _database
-                      //             .child('users')
-                      //             .child(firebaseUser.uid)
-                      //             .set(userDataMap);
-
-                      //         displayToastMessage(
-                      //             "USER CREATED SUCCESSFULLY", context);
-
-                      //         Navigator.pushReplacement(
-                      //           context,
-                      //           MaterialPageRoute(
-                      //             builder: (context) => HomeScreen(),
-                      //           ),
-                      //         );
-                      //       }
-                      //     } else {
-                      //       displayToastMessage("USER NOT CREATED", context);
-                      //     }
-                      //   } on FirebaseAuthException catch (error) {
-                      //     if (error.code == 'weak-password') {
-                      //       displayToastMessage(
-                      //           'The password provided is too weak.', context);
-                      //     } else if (error.code == 'email-already-in-use') {
-                      //       displayToastMessage(
-                      //           'The account already exists for that email.',
-                      //           context);
-                      //     }
-                      //   }
-                      // }
