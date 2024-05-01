@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, use_build_context_synchronously, avoid_print, no_leading_underscores_for_local_identifiers
 
 import 'dart:convert';
 import 'dart:io';
